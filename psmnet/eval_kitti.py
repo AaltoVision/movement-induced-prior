@@ -41,9 +41,6 @@ parser.add_argument('--ell', type=float, default=1.098, help='parameter ell for 
 parser.add_argument('--ell2', type=float, default=0.01, help='parameter ell for KR')
 
 
-parser.add_argument('--savepath', default='00000000_sf/',
-                    help='select model')
-
 args = parser.parse_args()
 args.cuda = not args.no_cuda and torch.cuda.is_available()
 
@@ -238,8 +235,6 @@ elif args.model == 'basic':
 else:
     print('no model')
 
-if not os.path.exists(args.savepath):
-    os.mkdir(args.savepath)
 
 model = nn.DataParallel(model, device_ids=[0])
 model.cuda()
